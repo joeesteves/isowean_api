@@ -19,6 +19,7 @@ defmodule IsoweanApiWeb.Router do
     get "/", PageController, :index
   end
 
+  forward "/api", Absinthe.Plug, schema: IsoweanApiWeb.Schema
   # Other scopes may use custom stacks.
   # scope "/api", IsoweanApiWeb do
   #   pipe_through :api
@@ -33,6 +34,11 @@ defmodule IsoweanApiWeb.Router do
   # as long as you are also using SSL (which you should anyway).
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
+
+    forward "/graphiql",
+            Absinthe.Plug.GraphiQL,
+            schema: IsoweanApiWeb.Schema,
+            interface: :simple
 
     scope "/" do
       pipe_through :browser
