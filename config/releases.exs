@@ -2,7 +2,7 @@
 # from environment variables. You can also hardcode secrets,
 # although such is generally not recommended and you have to
 # remember to add this file to your .gitignore.
-use Mix.Config
+import Config
 
 database_url =
   System.get_env("DATABASE_URL") ||
@@ -30,12 +30,26 @@ config :isowean_api, IsoweanApiWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+config :teamplace,
+  credentials: %{
+    client_id: System.get_env("TEAMPLACE_CLIENT_ID"),
+    client_secret: System.get_env("TEAMPLACE_CLIENT_SECRET")
+  }
+
+config :teamplace,
+  api_base: System.get_env("TEAMPLACE_API_BASE")
+
+config :teamplace,
+  bcra_token: System.get_env("TEAMPLACE_BCRA_TOKEN")
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-#     config :isowean_api, IsoweanApiWeb.Endpoint, server: true
+
+config :isowean_api, IsoweanApiWeb.Endpoint, server: true
+
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.

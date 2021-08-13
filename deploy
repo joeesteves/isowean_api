@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+PREV_VERSION=$(cat isowean_api.version)
+NEXT_VERSION=$(($PREV_VERSION + 1))
+
+echo "THIS IS VERSION: $NEXT_VERSION"
+
+IMAGE="caravanahub/isowean-api:$NEXT_VERSION"
+
+echo "Building $IMAGE"
+docker build . -t $IMAGE
+
+echo "Pushing $IMAGE"
+docker push $IMAGE
+
+echo "Updating Deployment Image to $IMAGE"
+kubectl set image deployment/isowean-api isowean-api=$IMAGE
+
+echo $NEXT_VERSION > isowean_api.version
+
+git add isowean_api.version
+git ci -m "Deploy of $IMAGE"
+git push

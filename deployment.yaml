@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isowean-api
+  namespace: caravana
+  labels:
+    app: isowean-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: isowean-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: isowean-api
+    spec:
+      containers:
+      - name: isowean-api
+        image: caravanahub/isowean-api:1
+        ports:
+        - containerPort: 4000
+        env:
+        - name: HOST
+          value: api.isowean.com
+        - name: PORT
+          value: "4000"
+        - name: USER
+          value: postgres
+        - name: PASSWORD
+          value: postgres
+        - name: DATABASE_URL
+          value: ecto://postgres:postgres@caravana-db:5432/isowean_api
+        - name: SECRET_KEY_BASE
+          value: Zks/p88uM3Y/d8NTUIeJ93UiG+Atnb94EDVY7w5G05YL/Bk/Ij2U6Onx4Pyl5bjm
+        - name: TEAMPLACE_CLIENT_ID
+          value: 9d06385227b8c414216a32ad34320620
+        - name: TEAMPLACE_CLIENT_SECRET
+          value: 653333f835a0dd065720ae758476efd1 
+        - name: TEAMPLACE_API_BASE
+          value: https://2.teamplace.finneg.com/BSA/api/ 
+        - name: TEAMPLACE_BCRA_TOKEN
+          value: not-provided 
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: isowean-api
+  namespace: caravana
+  labels:
+    app: isowean-api
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 4000
+  selector:
+    app: isowean-api
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: isowean-api-ingress
+  namespace: caravana
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - api.isowean.com
+      secretName: isowean-api-tls
+  rules:
+    - host: api.isowean.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: isowean-api
+              port:
+                number: 80
+          pathType: ImplementationSpecific
+

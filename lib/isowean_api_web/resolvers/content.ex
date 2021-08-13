@@ -1,8 +1,11 @@
 defmodule IsoweanApiWeb.Resolvers.Content do
-  @credentials Application.get_env(:teamplace, :credentials)
+  def credentials do
+    Application.get_env(:teamplace, :credentials)
+  end
+
   def list_maquinas(_parent, _args, _context) do
     data =
-      Teamplace.get_data(@credentials, "maquinas", "list")
+      Teamplace.get_data(credentials(), "maquinas", "list")
       |> Enum.take(10)
       |> Enum.map(&to_atom_map/1)
 
@@ -11,7 +14,7 @@ defmodule IsoweanApiWeb.Resolvers.Content do
 
   def list_proveedor(_parent, _args, _context) do
     data =
-      Teamplace.get_data(@credentials, "proveedor", "list")
+      Teamplace.get_data(credentials(), "proveedor", "list")
       |> Enum.take(10)
       |> Enum.map(&to_atom_map/1)
 
@@ -20,7 +23,7 @@ defmodule IsoweanApiWeb.Resolvers.Content do
 
   def list_cheques(_parent, _args, _context) do
     data =
-      Teamplace.get_data(@credentials, "reports", "checks", %{
+      Teamplace.get_data(credentials(), "reports", "checks", %{
         TipoCheque: 0,
         Estado: "emitido",
         MostrarSoloNoConciliados: 0,
