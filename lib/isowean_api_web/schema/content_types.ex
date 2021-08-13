@@ -23,6 +23,13 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :tercero, :string
   end
 
+  object :scores do
+    field :animal_id, :string, name: "caravana"
+    field :score, :string, name: "registro"
+    field :created_by, :string, name: "creador"
+    field :updated_at, :string, name: "modificado"
+  end
+
   object :ordenes_de_trabajo do
     field :id_referencia, :id
     field :fecha, :string

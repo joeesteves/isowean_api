@@ -35,6 +35,16 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     {:ok, data}
   end
 
+  def list_scores(_parent, _args, _context) do
+    res = HTTPoison.get!("https://caliper.isowean.com.ar/api/scores")
+
+    data =res.body
+    |> Jason.decode!()
+    |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def to_atom_map(map) do
     for {k, v} <- map, into: %{} do
       key = k |> Macro.underscore() |> String.to_atom()
