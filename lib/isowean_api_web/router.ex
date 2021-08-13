@@ -13,12 +13,13 @@ defmodule IsoweanApiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  forward "/", Absinthe.Plug, schema: IsoweanApiWeb.Schema
-
   forward "/graphiql",
           Absinthe.Plug.GraphiQL,
           schema: IsoweanApiWeb.Schema,
           interface: :simple
+
+  forward "/", Absinthe.Plug, schema: IsoweanApiWeb.Schema
+
 
   # Other scopes may use custom stacks.
   # scope "/api", IsoweanApiWeb do

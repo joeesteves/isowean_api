@@ -14,7 +14,7 @@ echo "Pushing $IMAGE"
 docker push $IMAGE
 
 echo "Updating Deployment Image to $IMAGE"
-kubectl set image deployment/isowean-api isowean-api=$IMAGE
+kubectl -n caravana set image deployment/isowean-api isowean-api=$IMAGE
 
 echo $NEXT_VERSION > isowean_api.version
 
