@@ -3,6 +3,17 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def stock_summary(_parent, %{product: product, stock_only: stock_only}, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "RESUMENSTOCK", %{
+        producto: product,
+        soloStockNoCero: stock_only
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def list_maquinas(_parent, _args, _context) do
     data =
       Teamplace.get_data(credentials(), "maquinas", "list")
@@ -38,9 +49,10 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def list_scores(_parent, _args, _context) do
     res = HTTPoison.get!("https://caliper.isowean.com.ar/api/scores")
 
-    data =res.body
-    |> Jason.decode!()
-    |> Enum.map(&to_atom_map/1)
+    data =
+      res.body
+      |> Jason.decode!()
+      |> Enum.map(&to_atom_map/1)
 
     {:ok, data}
   end

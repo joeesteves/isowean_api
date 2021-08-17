@@ -21,6 +21,13 @@ defmodule IsoweanApiWeb.Schema do
     field :scores, list_of(:scores) do
       resolve &Resolvers.Content.list_scores/3
     end
+
+    field :stock_summary, list_of(:stock_summary) do
+      arg :product, :string
+      arg :stock_only, :boolean
+      resolve &Resolvers.Content.stock_summary/3
+    end
+
   end
 
 end

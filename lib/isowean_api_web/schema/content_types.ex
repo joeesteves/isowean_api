@@ -12,6 +12,15 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :nombre, :string
   end
 
+  object :stock_summary do
+    field :cuenta, :string
+    field :producto, :string
+    field :productocodigo, :string, name: "codigo"
+    field :deposito, :string
+    field :cantidad1, :string, name: "cantidad"
+    field :importe, :string
+  end
+
   object :cheques do
     field :cuenta, :string
     field :conciliado, :string
