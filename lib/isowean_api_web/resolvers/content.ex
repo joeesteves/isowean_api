@@ -3,11 +3,11 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
-  def stock_summary(_parent, %{product: product, stock_only: stock_only}, _context) do
+  def stock_summary(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "RESUMENSTOCK", %{
-        producto: product,
-        soloStockNoCero: stock_only
+        producto: args[:product],
+        soloStockNoCero: args[:stock_only] || false
       })
       |> Enum.map(&to_atom_map/1)
 
