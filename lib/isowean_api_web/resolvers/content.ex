@@ -3,6 +3,17 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def dispatch_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bianalisisdesuplementacion", %{
+        fechaDesde: args[:date_since],
+        fechaHasta: args[:date_to]
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def supplementation_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdesuplementacion", %{

@@ -1,6 +1,41 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  object :dispatch_report do
+    field :cantidad, :string
+    field :proveedor, :string
+    field :transacciontiponombre, :string
+    field :unidadventa, :string
+    field :unidadstock2, :string
+    field :fecha, :string
+    field :vendedor, :string
+    field :descripcion, :string
+    field :codigoprod, :string
+    field :cliente, :string
+    field :cantidadstock2, :string
+    field :moneda, :string
+    field :totalbruto, :string
+    field :importemonprincipal, :string
+    field :depositoorigen, :string
+    field :importe, :string
+    field :preciomonprincipal, :string
+    field :condicionpago, :string
+    field :organizacion, :string
+    field :unidadstock, :string
+    field :total, :string
+    field :producto, :string
+    field :depositodestino, :string
+    field :importemonsecundaria, :string
+    field :precio, :string
+    field :estado, :string
+    field :cuenta, :string
+    field :rubro, :string
+    field :totalconceptos, :string
+    field :comprobante, :string
+    field :preciomonsecundaria, :string
+    field :docnroint, :string
+  end
+
   object :supplementation_report do
     field :precio, :float
     field :producto, :string

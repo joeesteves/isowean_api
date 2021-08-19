@@ -34,6 +34,11 @@ defmodule IsoweanApiWeb.Schema do
       resolve &Resolvers.Content.supplementation_report/3
     end
 
+    field :dispatch_report, list_of(:dispatch_report) do
+      arg :date_since, :string
+      arg :date_to, :string
+      resolve &Resolvers.Content.dispatch_report/3
+    end
   end
 
 end
