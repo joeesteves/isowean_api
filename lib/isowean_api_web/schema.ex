@@ -28,6 +28,12 @@ defmodule IsoweanApiWeb.Schema do
       resolve &Resolvers.Content.stock_summary/3
     end
 
+    field :supplementation_report, list_of(:supplementation_report) do
+      arg :date_since, :string
+      arg :date_to, :string
+      resolve &Resolvers.Content.supplementation_report/3
+    end
+
   end
 
 end
