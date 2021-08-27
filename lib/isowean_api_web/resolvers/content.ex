@@ -3,9 +3,33 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def invoice_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bianalisisdefacturacion", %{
+        fechaDesde: args[:date_since],
+        fechaHasta: args[:date_to],
+        cuenta: args[:account]
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
+  def balance_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bibalancepormes", %{
+        fechaDesde: args[:date_since],
+        fechaHasta: args[:date_to],
+        cuenta: args[:account]
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def dispatch_report(_parent, args, _context) do
     data =
-      Teamplace.get_data(credentials(), "reports", "bianalisisdesuplementacion", %{
+      Teamplace.get_data(credentials(), "reports", "bianalisisdedespachos", %{
         fechaDesde: args[:date_since],
         fechaHasta: args[:date_to]
       })
@@ -41,7 +65,6 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def list_maquinas(_parent, _args, _context) do
     data =
       Teamplace.get_data(credentials(), "maquinas", "list")
-      |> Enum.take(10)
       |> Enum.map(&to_atom_map/1)
 
     {:ok, data}
@@ -50,7 +73,6 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def list_proveedor(_parent, _args, _context) do
     data =
       Teamplace.get_data(credentials(), "proveedor", "list")
-      |> Enum.take(10)
       |> Enum.map(&to_atom_map/1)
 
     {:ok, data}
@@ -83,7 +105,7 @@ defmodule IsoweanApiWeb.Resolvers.Content do
 
   def to_atom_map(map) do
     for {k, v} <- map, into: %{} do
-      key = k |> Macro.underscore() |> String.to_atom()
+      key = k |> Macro.underscore() |> String.replace("-", "") |> String.to_atom()
 
       value =
         case v do
