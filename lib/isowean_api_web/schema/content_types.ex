@@ -1,6 +1,113 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  object :invoice_report do
+    field :transacciontiponombre, type: :string
+    field :importe, type: :string
+    field :actividadiva, type: :string
+    field :preciosobre, type: :string
+    field :productoraman, type: :string
+    field :totalbruto, type: :string
+    field :totalconceptos, type: :string
+    field :fecha, type: :string
+    field :depositoorigen, type: :string
+    field :proveedor, type: :string
+    field :preciomonprincipal, type: :string
+    field :cotizacion, type: :string
+    field :provinciaorigen, type: :string
+    field :provinciadestino, type: :string
+    field :condicionpago, type: :string
+    field :dimensionvalor, type: :string
+    field :cuenta, type: :string
+    field :numerocontrato, type: :string
+    field :total, type: :string
+    field :vendedor, type: :string
+    field :pendienteorigen, type: :string
+    field :descripcion, type: :string
+    field :fechaproximopaso, type: :string
+    field :gravadoportasaimpositiva, type: :string
+    field :docnroint, type: :string
+    field :estado, type: :string
+    field :codigoprod, type: :string
+    field :ano, type: :string
+    field :producto, type: :string
+    field :percepciones, type: :string
+    field :fechacomprobante, type: :string
+    field :importemonprincipal, type: :string
+    field :precio, type: :string
+    field :gravado, type: :string
+    field :cantidadstock2, type: :string
+    field :cliente, type: :string
+    field :identificacionexterna, type: :string
+    field :transaccionid, type: :string
+    field :moneda, type: :string
+    field :organizacion, type: :string
+    field :importemonsecundaria, type: :string
+    field :marca, type: :string
+    field :corredor, type: :string
+    field :cantidad, type: :string
+    field :an_o_mes, type: :string, name: "anomes"
+    field :unidadstock2, type: :string
+    field :unidadventa, type: :string
+    field :depositodestino, type: :string
+    field :descitem, type: :string
+    field :empresa, type: :string
+    field :unidadstock, type: :string
+    field :comprobante, type: :string
+    field :preciomonsecundaria, type: :string
+    field :comprobanteadicional, type: :string
+    field :provinciadestinoitem, type: :string
+    field :unidadcompra, type: :string
+  end
+
+  object :balance_report do
+    field :nmes8, type: :string
+    field :saldomonedappal, type: :string
+    field :nmes3, type: :string
+    field :debemonedatransaccion, type: :string
+    field :mes4, type: :string
+    field :nmes9, type: :string
+    field :saldoanteriormonedappal, type: :string
+    field :nmes11, type: :string
+    field :cuenta, type: :string
+    field :mes3, type: :string
+    field :saldoperiodomonedappal, type: :string
+    field :mes7, type: :string
+    field :debemonedappal, type: :string
+    field :cuentaid, type: :string
+    field :nmes2, type: :string
+    field :saldoanteriormonedatransaccion, type: :string
+    field :debemonedasecundaria, type: :string
+    field :saldoperiodomonedatransaccion, type: :string
+    field :nmes10, type: :string
+    field :mes10, type: :string
+    field :nmes6, type: :string
+    field :mes9, type: :string
+    field :mes12, type: :string
+    field :codigocuenta, type: :string
+    field :saldomonedasecundaria, type: :string
+    field :habermonedatransaccion, type: :string
+    field :mes6, type: :string
+    field :mes2, type: :string
+    field :habermonedasecundaria, type: :string
+    field :nmes4, type: :string
+    field :nmes7, type: :string
+    field :saldoperiodomonedasecundaria, type: :string
+    field :nmes5, type: :string
+    field :mes11, type: :string
+    field :saldomonedatransaccion, type: :string
+    field :ordensecuencial, type: :string
+    field :saldoanteriormonedasecundaria, type: :string
+    field :nmes12, type: :string
+    field :nmes1, type: :string
+    field :mes1, type: :string
+    field :habermonedappal, type: :string
+    field :mes8, type: :string
+    field :mes5, type: :string
+    field :nodoarbolid, type: :string
+    field :codigo, type: :string
+  end
+
   object :dispatch_report do
     field :cantidad, :string
     field :proveedor, :string
@@ -27,7 +134,7 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :depositodestino, :string
     field :importemonsecundaria, :string
     field :precio, :string
-    field :estado, :string
+    field  :estado, :string
     field :cuenta, :string
     field :rubro, :string
     field :totalconceptos, :string
@@ -38,6 +145,7 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
 
   object :supplementation_report do
     field :precio, :float
+    field :cantidad, :float
     field :producto, :string
     field :insumo, :string
     field :establecimiento, :string
