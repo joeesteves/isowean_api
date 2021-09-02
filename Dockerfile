@@ -41,6 +41,8 @@ WORKDIR /app
 
 RUN chown nobody:nobody /app
 
+RUN chmod 777 /app
+
 USER nobody:nobody
 
 COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/isowean_api ./
