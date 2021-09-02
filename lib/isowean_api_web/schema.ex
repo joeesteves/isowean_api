@@ -46,11 +46,28 @@ defmodule IsoweanApiWeb.Schema do
       arg :account, :string
       resolve &Resolvers.Content.balance_report/3
     end
+
     field :invoice_report, list_of(:invoice_report) do
       arg :date_since, :string
       arg :date_to, :string
       arg :account, :string
       resolve &Resolvers.Content.invoice_report/3
+    end
+
+    field :ledger_report, list_of(:ledger_report) do
+      arg :date_since, :string
+      arg :date_to, :string
+      arg :account, :string
+
+      resolve &Resolvers.Content.ledger_report/3
+    end
+
+    field :production_supply_report, list_of(:production_supply_report) do
+      arg :date_since, :string
+      arg :date_to, :string
+      arg :account, :string
+
+      resolve &Resolvers.Content.production_supply_report/3
     end
   end
 end

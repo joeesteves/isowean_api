@@ -6,9 +6,10 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def invoice_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdefacturacion", %{
-        fechaDesde: args[:date_since],
-        fechaHasta: args[:date_to],
-        cuenta: args[:account]
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        cuenta: args[:account],
+        Empresa: "EMPRE01"
       })
       |> Enum.map(&to_atom_map/1)
 
@@ -18,9 +19,63 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def balance_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bibalancepormes", %{
-        fechaDesde: args[:date_since],
-        fechaHasta: args[:date_to],
-        cuenta: args[:account]
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        cuenta: args[:account],
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
+  def production_supply_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bianalisisdeconsumosdeproduccion", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+  def ledger_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bimayor", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        cuenta: args[:account],
+        soloconsaldo: true,
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
+  def ledger_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bimayor", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        cuenta: args[:account],
+        soloconsaldo: true,
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
+  def ledger_report(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bimayor", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        cuenta: args[:account],
+        soloconsaldo: true,
+        Empresa: "EMPRE01"
       })
       |> Enum.map(&to_atom_map/1)
 
@@ -30,8 +85,8 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def dispatch_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdedespachos", %{
-        fechaDesde: args[:date_since],
-        fechaHasta: args[:date_to]
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to]
       })
       |> Enum.map(&to_atom_map/1)
 
@@ -41,8 +96,8 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def supplementation_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdesuplementacion", %{
-        fechaDesde: args[:date_since],
-        fechaHasta: args[:date_to],
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
         TipoPrecio: 1,
         Moneda: "PES"
       })
