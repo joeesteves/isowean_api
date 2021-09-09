@@ -96,10 +96,11 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   def supplementation_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdesuplementacion", %{
-        FechaDesde: args[:date_since],
-        FechaHasta: args[:date_to],
+        fechaDesde: args[:date_since],
+        fechaHasta: args[:date_to],
         TipoPrecio: 1,
-        Moneda: "PES"
+        Moneda: "PES",
+        Empresa: "EMPRE01"
       })
       |> Enum.map(&to_atom_map/1)
 
