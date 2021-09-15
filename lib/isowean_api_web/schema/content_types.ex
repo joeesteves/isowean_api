@@ -1,7 +1,7 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
-  object :settlements_and_adjustments do
+  object :linked_ops do
     field :cantidad, type: :string
     field :cantidadaplicada, type: :string
     field :cantidadpendiente, type: :string

@@ -6,7 +6,19 @@ defmodule IsoweanApiWeb.Schema do
 
   query do
     @desc "Get what you ask"
-    field :settlements_and_adjustments, list_of(:settlements_and_adjustments) do
+    field :livestock_dispatch, list_of(:linked_ops) do
+      arg :date_since, :string
+      arg :date_to, :string
+      resolve &Resolvers.Content.livestock_dispatch/3
+    end
+
+    field :cvh, list_of(:linked_ops) do
+      arg :date_since, :string
+      arg :date_to, :string
+      resolve &Resolvers.Content.cvh/3
+    end
+
+    field :settlements_and_adjustments, list_of(:linked_ops) do
       arg :date_since, :string
       arg :date_to, :string
       resolve &Resolvers.Content.settlements_and_adjustments/3

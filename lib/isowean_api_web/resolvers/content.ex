@@ -3,6 +3,34 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def livestock_dispatch(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bivinculaciondeoperaciones", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        Documento: "HAC-DESP",
+        RolVinculacion: 40,
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
+  def cvh(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bivinculaciondeoperaciones", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        Documento: "CVH",
+        RolVinculacion: 40,
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def settlements_and_adjustments(_parent, args, _context) do
     data_nc =
       Teamplace.get_data(credentials(), "reports", "bivinculaciondeoperaciones", %{
