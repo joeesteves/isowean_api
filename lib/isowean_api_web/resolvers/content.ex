@@ -3,6 +3,28 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def settlements_and_adjustments(_parent, args, _context) do
+    data_nc =
+      Teamplace.get_data(credentials(), "reports", "bivinculaciondeoperaciones", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        Documento: "LIQ-HAC-NC",
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    data_nd =
+      Teamplace.get_data(credentials(), "reports", "bivinculaciondeoperaciones", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        Documento: "LIQ-HAC-ND",
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data_nc ++ data_nd}
+  end
+
   def invoice_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdefacturacion", %{
@@ -40,6 +62,7 @@ defmodule IsoweanApiWeb.Resolvers.Content do
 
     {:ok, data}
   end
+
   def ledger_report(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bimayor", %{

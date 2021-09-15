@@ -1,6 +1,33 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  object :settlements_and_adjustments do
+    field :cantidad, type: :string
+    field :cantidadaplicada, type: :string
+    field :cantidadpendiente, type: :string
+    field :cantidadstock1, type: :string
+    field :cantidadstock2, type: :string
+    field :comprobante1, type: :string
+    field :comprobante2, type: :string
+    field :cuenta, type: :string
+    field :docnroint1, type: :string
+    field :docnroint2, type: :string
+    field :establecimiento, type: :string
+    field :fecha1, type: :string
+    field :fecha2, type: :string
+    field :importe1, type: :string
+    field :importe2, type: :string
+    field :moneda, type: :string
+    field :precio1, type: :string
+    field :precio2, type: :string
+    field :producto, type: :string
+    field :tercero, type: :string
+    field :transaccionid, type: :string
+    field :transsubtiponombre, type: :string
+    field :unidad1, type: :string
+    field :unidad2, type: :string
+  end
+
   object :invoice_report do
     field :transacciontiponombre, type: :string
     field :importe, type: :string
@@ -221,7 +248,7 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :depositodestino, :string
     field :importemonsecundaria, :string
     field :precio, :string
-    field  :estado, :string
+    field :estado, :string
     field :cuenta, :string
     field :rubro, :string
     field :totalconceptos, :string
