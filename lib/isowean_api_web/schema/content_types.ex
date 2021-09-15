@@ -1,6 +1,48 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  object :cvh_analysis do
+    field :transacciontiponombre, type: :string
+    field :importe, type: :string
+    field :preciosobre, type: :string
+    field :kg_faenados_kg_vivos, type: :string
+    field :partida, type: :string
+    field :fecha, type: :string
+    field :transacconsubtiponombre, type: :string
+    field :eventohaciendaclasificacion, type: :string
+    field :preciomonprincipal, type: :string
+    field :establecimiento, type: :string
+    field :cotizacion, type: :string
+    field :condicionpago, type: :string
+    field :contrato, type: :string
+    field :dimensionvalor, type: :string
+    field :pendienteorigen, type: :string
+    field :descripcion, type: :string
+    field :docnroint, type: :string
+    field :ano, type: :string
+    field :producto, type: :string
+    field :importemonprincipal, type: :string
+    field :precio, type: :string
+    field :cantidadfaenada, type: :string
+    field :cantidadstock2, type: :string
+    field :cliente, type: :string
+    field :transaccionid, type: :string
+    field :moneda, type: :string
+    field :organizacion, type: :string
+    field :cantidad, type: :string
+    field :an_o_mes, type: :string, name: "anomes"
+    field :unidadventa, type: :string
+    field :kg_cab, type: :string
+    field :empresa, type: :string
+    field :unidadstock, type: :string
+    field :cantidadpendiente, type: :string
+    field :pendientedestino, type: :string
+    field :transaccionsubtipoid, type: :string
+    field :comprobante, type: :string
+    field :preciomonsecundaria, type: :string
+    field :unidadcompra, type: :string
+  end
+
   object :linked_ops do
     field :cantidad, type: :string
     field :cantidadaplicada, type: :string
@@ -335,6 +377,4 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :fisico_tipo_id, :string
     field :actividad_detalle, :string
   end
-
 end
-
