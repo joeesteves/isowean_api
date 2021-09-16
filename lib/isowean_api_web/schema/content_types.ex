@@ -1,6 +1,75 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  object :sales_analysis do
+    field :transacciontiponombre, type: :string
+    field :importe, type: :string
+    field :preciomonsecundaria_kgvivos, type: :string
+    field :preciosobre, type: :string
+    field :productoraman, type: :string
+    field :totalbruto, type: :string
+    field :kg.faenados() / kg.vivos, type: :string
+    field :kg / cab(despachados, type: :string)
+    field :partida, type: :string
+    field :totalconceptos, type: :string
+    field :fecha, type: :string
+    field :establecimientoorigen, type: :string
+    field :depositoorigen, type: :string
+    field :transacconsubtiponombre, type: :string
+    field :eventohaciendaclasificacion, type: :string
+    field :proveedor, type: :string
+    field :preciomonprincipal, type: :string
+    field :cotizacion, type: :string
+    field :condicionpago, type: :string
+    field :contrato, type: :string
+    field :dimensionvalor, type: :string
+    field :cuenta, type: :string
+    field :total, type: :string
+    field :kgdespachados, type: :string
+    field :vendedor, type: :string
+    field :productorama2, type: :string
+    field :pendienteorigen, type: :string
+    field :desbaste, type: :string
+    field :preciomonsecundaria / cab, type: :string
+    field :descripcion, type: :string
+    field :importe / cab, type: :string
+    field :docnroint, type: :string
+    field :ano, type: :string
+    field :producto, type: :string
+    field :productorama1, type: :string
+    field :importemonprincipal, type: :string
+    field :precio, type: :string
+    field :cantidadfaenada, type: :string
+    field :cantidadstock2, type: :string
+    field :transaccionidvinculado, type: :string
+    field :importe_kgvivos, type: :string
+    field :cliente, type: :string
+    field :listaprecio, type: :string
+    field :transaccionid, type: :string
+    field :establecimientodestino, type: :string
+    field :moneda, type: :string
+    field :organizacion, type: :string
+    field :importemonsecundaria, type: :string
+    field :cantidad, type: :string
+    field :an_o_mes, type: :string, name: "anomes"
+    field :unidadventa, type: :string
+    field :importe_kgfaenados, type: :string
+    field :kg_cab, type: :string
+    field :depositodestino, type: :string
+    field :empresa, type: :string
+    field :productorama3, type: :string
+    field :desbaste, type: :string
+    field :unidadstock, type: :string
+    field :cantidadpendiente, type: :string
+    field :preciomonsecundaria_kgfaenado, type: :string
+    field :pendientedestino, type: :string
+    field :operacionvinculada, type: :string
+    field :transaccionsubtipoid, type: :string
+    field :comprobante, type: :string
+    field :preciomonsecundaria, type: :string
+    field :unidadcompra, type: :string
+  end
+
   object :cvh_analysis do
     field :transacciontiponombre, type: :string
     field :importe, type: :string
