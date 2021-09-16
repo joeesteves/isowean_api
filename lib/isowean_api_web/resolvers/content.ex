@@ -3,6 +3,18 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def sales_analysis(_parent, args, _context) do
+    data =
+      Teamplace.get_data(credentials(), "reports", "bianalisisdeliquidacionesdeventa", %{
+        FechaDesde: args[:date_since],
+        FechaHasta: args[:date_to],
+        Empresa: "EMPRE01"
+      })
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def cvh_analysis(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdecvh", %{
@@ -224,11 +236,14 @@ defmodule IsoweanApiWeb.Resolvers.Content do
 
   def to_atom_map(map) do
     for {k, v} <- map, into: %{} do
-      key = k
-      |> Macro.underscore()
-      |> String.replace("-", "")
-      |> String.replace("/", "_")
-      |> String.to_atom()
+      key =
+        k
+        |> Macro.underscore()
+        |> String.replace(~r/(-|\s)/, "")
+        |> String.replace("/", "_")
+        |> String.replace("%_", "")
+        |> String.replace(~r/_(\w)_/, "\\1", global: true)
+        |> String.to_atom()
 
       value =
         case v do
