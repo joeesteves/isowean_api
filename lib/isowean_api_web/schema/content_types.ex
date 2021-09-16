@@ -1,6 +1,28 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  object :client_applications do
+    field :comprobante, type: :string
+    field :cuenta, type: :string
+    field :debe_moneda_principal, type: :string
+    field :debe_moneda_transaccion, type: :string
+    field :documento, type: :string
+    field :empresa, type: :string
+    field :fecha, type: :string
+    field :fechavto, type: :string
+    field :haber_moneda_principal, type: :string
+    field :haber_moneda_transaccion, type: :string
+    field :moneda, type: :string
+    field :numero, type: :string
+    field :operacion, type: :string
+    field :orden, type: :string
+    field :organizacion, type: :string
+    field :saldocomprobante_moneda_principal, type: :string
+    field :saldocomprobante_moneda_transaccion, type: :string
+    field :transaccionid, type: :string
+    field :transaccionidoriginal, type: :string
+  end
+
   object :sales_analysis do
     field :transacciontiponombre, type: :string
     field :pendientedestino, type: :string
