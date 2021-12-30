@@ -234,8 +234,19 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     {:ok, data}
   end
 
+  def list_receptions(_parent, _args, _context) do
+    res = HTTPoison.get!("https://recepcion.isowean.com/events")
+
+    data =
+      res.body
+      |> Jason.decode!()
+      |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def list_scores(_parent, _args, _context) do
-    res = HTTPoison.get!("https://caliper.isowean.com.ar/api/scores")
+    res = HTTPoison.get!("https://caliper.isowean.com/api/scores")
 
     data =
       res.body

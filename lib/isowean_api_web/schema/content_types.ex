@@ -447,6 +447,16 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :updated_at, :string, name: "modificado"
   end
 
+  object :receptions do
+    field :guest_name, :string, name: "visitante"
+    field :inserted_at, :string, name: "creado"
+    field :room, :room, name: "sala"
+  end
+
+  object :room do
+    field :name, :string, name: "nombre"
+  end
+
   object :ordenes_de_trabajo do
     field :id_referencia, :id
     field :fecha, :string

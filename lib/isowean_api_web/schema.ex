@@ -55,6 +55,10 @@ defmodule IsoweanApiWeb.Schema do
       resolve(&Resolvers.Content.list_cheques/3)
     end
 
+    field :receptions, list_of(:receptions) do
+      resolve(&Resolvers.Content.list_receptions/3)
+    end
+
     field :scores, list_of(:scores) do
       resolve(&Resolvers.Content.list_scores/3)
     end
