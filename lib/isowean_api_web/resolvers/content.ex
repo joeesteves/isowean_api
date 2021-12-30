@@ -14,6 +14,7 @@ defmodule IsoweanApiWeb.Resolvers.Content do
 
     {:ok, data}
   end
+
   def sales_analysis(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "bianalisisdeliquidacionesdeventa", %{
@@ -234,8 +235,8 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     {:ok, data}
   end
 
-  def list_receptions(_parent, _args, _context) do
-    res = HTTPoison.get!("https://recepcion.isowean.com/events")
+  def list_receptions(_parent, args, _context) do
+    res = HTTPoison.get!("https://recepcion.isowean.com/events?from=#{args[:date_since]}&to=#{args[:date_to]}")
 
     data =
       res.body

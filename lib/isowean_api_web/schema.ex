@@ -56,6 +56,8 @@ defmodule IsoweanApiWeb.Schema do
     end
 
     field :receptions, list_of(:receptions) do
+      arg(:date_since, :string)
+      arg(:date_to, :string)
       resolve(&Resolvers.Content.list_receptions/3)
     end
 
