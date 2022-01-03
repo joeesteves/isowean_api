@@ -236,7 +236,13 @@ defmodule IsoweanApiWeb.Resolvers.Content do
   end
 
   def list_receptions(_parent, args, _context) do
-    res = HTTPoison.get!("https://recepcion.isowean.com/events?from=#{args[:date_since]}&to=#{args[:date_to]}")
+    res = case args do
+      %{date_since: date_since, date_to: date_to} ->
+        HTTPoison.get!("https://recepcion.isowean.com/events?from=#{date_since}&to=#{date_to}")
+      _ ->
+
+        HTTPoison.get!("https://recepcion.isowean.com/events")
+    end
 
     data =
       res.body

@@ -455,6 +455,7 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
 
   object :room do
     field :name, :string, name: "nombre"
+    field :message, :string, name: "mensage"
   end
 
   object :ordenes_de_trabajo do
