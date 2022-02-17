@@ -445,7 +445,8 @@ defmodule IsoweanApiWeb.Schema.ContentTypes do
     field :score, :string, name: "registro"
     field :created_by, :string, name: "creador"
     field :updated_at, :string, name: "modificado"
-    field :served_at, :string, name: "servicio"
+    field :mating_at, :string, name: "servicio"
+    field :pregnancy_week, :string, name: "semana_servicio"
   end
 
   object :receptions do
