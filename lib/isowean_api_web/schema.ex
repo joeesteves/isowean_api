@@ -8,8 +8,9 @@ defmodule IsoweanApiWeb.Schema do
     @desc "Get what you ask"
 
     field :matings, list_of(:matings) do
-      arg(:date_since, :string)
-      arg(:date_to, :string)
+      arg :date_since, non_null(:string)
+      arg :date_to, non_null(:string)
+
       resolve(&Resolvers.Content.matings/3)
     end
 
