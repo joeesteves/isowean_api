@@ -14,7 +14,8 @@ defmodule IsoweanApi.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: IsoweanApi.PubSub},
       # Start the Endpoint (http/https)
-      IsoweanApiWeb.Endpoint
+      IsoweanApiWeb.Endpoint,
+      Agriness
       # Start a worker by calling: IsoweanApi.Worker.start_link(arg)
       # {IsoweanApi.Worker, arg}
     ]

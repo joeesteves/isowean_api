@@ -47,7 +47,8 @@ defmodule IsoweanApi.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe_plug, "~> 1.5"},
       {:teamplace, git: "https://github.com/ponyesteves/teamplace"},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:firebirdex, "~> 0.2.0"}
     ]
   end
 
