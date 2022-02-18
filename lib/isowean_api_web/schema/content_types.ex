@@ -1,5 +1,13 @@
 defmodule IsoweanApiWeb.Schema.ContentTypes do
   use Absinthe.Schema.Notation
+  object :matings do
+    field :cdcobertura, type: :string
+    field :cdmatriz, type: :string
+    field :ciclo, type: :string
+    field :dtcobertura, type: :string
+    field :id1, type: :string
+    field :nmfuncionario, type: :string
+  end
 
   object :client_applications do
     field :comprobante, type: :string

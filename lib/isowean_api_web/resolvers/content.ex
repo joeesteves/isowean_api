@@ -3,6 +3,14 @@ defmodule IsoweanApiWeb.Resolvers.Content do
     Application.get_env(:teamplace, :credentials)
   end
 
+  def matings(_parent, args, _context) do
+    data = Agriness.mating_query(args)
+    |> Agriness.query()
+    |> Enum.map(&to_atom_map/1)
+
+    {:ok, data}
+  end
+
   def client_applications(_parent, args, _context) do
     data =
       Teamplace.get_data(credentials(), "reports", "biaplicaciondeclientes", %{

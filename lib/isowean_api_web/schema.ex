@@ -7,6 +7,12 @@ defmodule IsoweanApiWeb.Schema do
   query do
     @desc "Get what you ask"
 
+    field :matings, list_of(:matings) do
+      arg(:date_since, :string)
+      arg(:date_to, :string)
+      resolve(&Resolvers.Content.matings/3)
+    end
+
     field :client_applications, list_of(:client_applications) do
       arg(:date_since, :string)
       arg(:date_to, :string)

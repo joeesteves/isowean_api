@@ -44,13 +44,18 @@ defmodule Agriness do
     Enum.map(rows, fn row -> Enum.zip(cols, row)|> Enum.into(%{}) end)
   end
 
-  def mating_query do
+  def mating_query(args) do
     """
-    SELECT FIRST 5 cob.CDCOBERTURA, cob.DTCOBERTURA, an.CDMATRIZ, an.ID1, cob.CICLO, rep.ID1, fun.NMFUNCIONARIO  FROM ESANCOBERTURA cob
+    SELECT cob.CDCOBERTURA, #{cast_date_field("cob.DTCOBERTURA")}, an.CDMATRIZ, an.ID1, cob.CICLO, rep.ID1, fun.NMFUNCIONARIO  FROM ESANCOBERTURA cob
     LEFT JOIN ESANFUNCIONARIO fun ON cob.CDFUNCIONARIO  = fun.CDFUNCIONARIO
     LEFT JOIN ESANMATRIZ an ON cob.CDMATRIZ = an.CDMATRIZ
     LEFT JOIN ESANREPRODUTOR rep ON cob.CDREPRODUTOR = rep.CDREPRODUTOR
-    WHERE cob.CDCOBERTURA >= 114869
+    WHERE cob.DTCOBERTURA >= date '#{args[:date_since]}'
+    AND   cob.DTCOBERTURA <= date '#{args[:date_to]}'
     """
+  end
+
+  def cast_date_field(field_name) do
+    "SUBSTRING(CAST(#{field_name} as varchar(50)) FROM 1 FOR 10) #{String.replace(field_name, ~r/^.*\./, "")}"
   end
 end
